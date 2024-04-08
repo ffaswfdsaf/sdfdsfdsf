@@ -15,4 +15,4 @@ set COMMANDLINE_ARGS=
 @REM  --embeddings-dir %A1111_HOME%/embeddings ^
 @REM  --lora-dir %A1111_HOME%/models/Lora
 
-call webui.bat
+call web.bat
