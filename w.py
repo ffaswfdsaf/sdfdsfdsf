@@ -51,7 +51,7 @@ def api_only_worker():
     )
 
 
-def webui_worker():
+def web_worker():
     from modules.shared_cmd_options import cmd_opts
 
     launch_api = cmd_opts.api
