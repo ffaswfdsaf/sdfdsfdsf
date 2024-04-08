@@ -144,8 +144,8 @@ def web_worker():
             shared.demo.close()
             break
 
-        # disable auto launch webui in browser for subsequent UI Reload
-        os.environ.setdefault('SD_WEBUI_RESTARTING', '1')
+        # disable auto launch web in browser for subsequent UI Reload
+        os.environ.setdefault('SD_WEB_RESTARTING', '1')
 
         print('Restarting UI...')
         shared.demo.close()
@@ -163,7 +163,7 @@ def api_only():
 
 
 def webui():
-    Thread(target=webui_worker, daemon=True).start()
+    Thread(target=web_worker, daemon=True).start()
 
 
 if __name__ == "__main__":
