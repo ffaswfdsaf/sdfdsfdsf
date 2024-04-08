@@ -75,11 +75,11 @@ def web_worker():
         gradio_auth_creds = list(initialize_util.get_gradio_auth_creds()) or None
 
         auto_launch_browser = False
-        if os.getenv('SD_WEBUI_RESTARTING') != '1':
+        if os.getenv('SD_WEB_RESTARTING') != '1':
             if shared.opts.auto_launch_browser == "Remote" or cmd_opts.autolaunch:
                 auto_launch_browser = True
             elif shared.opts.auto_launch_browser == "Local":
-                auto_launch_browser = not cmd_opts.webui_is_non_local
+                auto_launch_browser = not cmd_opts.web_is_non_local
 
         app, local_url, share_url = shared.demo.launch(
             share=cmd_opts.share,
@@ -162,16 +162,16 @@ def api_only():
     Thread(target=api_only_worker, daemon=True).start()
 
 
-def webui():
+def web():
     Thread(target=web_worker, daemon=True).start()
 
 
 if __name__ == "__main__":
     from modules.shared_cmd_options import cmd_opts
 
-    if cmd_opts.nowebui:
+    if cmd_opts.noweb:
         api_only()
     else:
-        webui()
+        web()
 
     main_thread.loop()
